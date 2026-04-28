@@ -101,9 +101,23 @@ export class ProductListComponent implements OnInit {
   }
 
   onCategorySelect(id: number | null) {
-    this.categoryId = id;
-    this.onFilterChange();
-  }
+  this.categoryId = id;
+  this.page = 0;
+  
+  const queryParams: any = {
+    page: this.page,
+    size: this.size,
+    sortBy: this.sortBy
+  };
+  if (this.search) queryParams.search = this.search;
+  if (id !== null) queryParams.categoryId = id;
+
+  this.router.navigate([], {
+    relativeTo: this.route,
+    queryParams: queryParams,
+    queryParamsHandling: ''
+  });
+}
 
   onPageChange(newPage: number) {
     this.page = newPage;

@@ -25,30 +25,32 @@ export class LoginComponent {
   });
 
   isLoading = false;
+  serverError = '';
 
-  onSubmit() {
-    if (this.loginForm.invalid) {
-      this.loginForm.markAllAsTouched();
-      return;
-    }
-
-    this.isLoading = true;
-    const { email, password } = this.loginForm.value;
-
-    this.authService.login({ email: email!, password: password! })
-      .pipe(finalize(() => this.isLoading = false))
-      .subscribe({
-        next: (res: any) => {
-          if (res.success) {
-            this.toastService.success('Logged in successfully!');
-            this.router.navigate(['/home']);
-          } else {
-            this.toastService.error(res.message || 'Login failed.');
-          }
-        },
-        error: (err: any) => {
-          this.toastService.error(err.error?.message || 'An error occurred during login.');
-        }
-      });
+ onSubmit() {
+  this.serverError = ''; 
+  if (this.loginForm.invalid) {
+    this.loginForm.markAllAsTouched();
+    return;
   }
+
+  this.isLoading = true;
+  const { email, password } = this.loginForm.value;
+
+  this.authService.login({ email: email!, password: password! })
+    .pipe(finalize(() => this.isLoading = false))
+    .subscribe({
+      next: (res: any) => {
+        if (res.success) {
+          this.toastService.success('Logged in successfully!');
+          this.router.navigate(['/home']);
+        } else {
+          this.serverError = res.message || 'Login failed.';
+        }
+      },
+      error: (err: any) => {
+        this.serverError = err.error?.message || 'Invalid email or password.';
+      }
+    });
+}
 }

@@ -7,6 +7,7 @@ import { OrderService } from '../../../core/services/order.service';
 import { ToastService } from '../../../core/services/toast.service';
 import { concatMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { CartService } from '../../../core/services/cart.service';
 
 @Component({
   selector: 'app-payment',
@@ -19,6 +20,7 @@ export class PaymentComponent implements OnInit {
   private router = inject(Router);
   private orderService = inject(OrderService);
   private toastService = inject(ToastService);
+  private cartService = inject(CartService);
 
   order: Order | null = null;
   selectedMode: PaymentMode = 'COD';
@@ -52,6 +54,7 @@ export class PaymentComponent implements OnInit {
       next: (res: any) => {
         if (res.success) {
           localStorage.removeItem('shopsphere_pending_order');
+          this.cartService.clearCartCount();
           this.toastService.success('Order placed successfully');
           this.router.navigate(['/my-orders']);
         } else {

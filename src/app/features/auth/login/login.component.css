@@ -125,3 +125,13 @@ input.is-invalid:focus {
 .auth-footer a:hover {
   color: var(--accent);
 }
+
+.server-error {
+  background-color: #fff0f0;
+  border: 1px solid #ffcccc;
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: #cc0000;
+  font-size: 14px;
+  margin-bottom: 12px;
+}

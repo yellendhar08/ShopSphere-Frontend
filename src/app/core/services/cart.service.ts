@@ -47,4 +47,8 @@ export class CartService {
   refreshCartCount(): void {
     this.getCart().subscribe();
   }
+
+  clearCartCount(): void {
+  this.cartCount$.next(0);
+  }
 }

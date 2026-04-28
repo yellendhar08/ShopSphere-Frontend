@@ -35,6 +35,10 @@
         </div>
       </div>
 
+      <div class="error-message server-error" *ngIf="serverError">
+        {{ serverError }}
+      </div>
+
       <button type="submit" class="btn-submit" [disabled]="loginForm.invalid || isLoading">
         <span *ngIf="!isLoading">Login</span>
         <span *ngIf="isLoading" class="loading-text">Logging in...</span>
