@@ -1,0 +1,30 @@
+.admin-topbar {
+  background-color: #1a237e;
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.back-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+.admin-content {
+  background-color: #f5f5f5;
+  min-height: calc(100vh - 60px);
+}

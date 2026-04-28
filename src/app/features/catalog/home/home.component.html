@@ -1,0 +1,51 @@
+﻿<div class="home-container">
+  
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to ShopSphere</h1>
+      <p class="subtitle">Your one-stop destination for everything amazing!</p>
+      <a routerLink="/products" class="btn-shop-now">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-section">
+    <div class="section-header">
+      <h2>Featured Products</h2>
+    </div>
+    
+    <div class="product-grid" *ngIf="featuredProducts.length > 0; else noFeatured">
+      <app-product-card 
+        *ngFor="let product of featuredProducts" 
+        [product]="product">
+      </app-product-card>
+    </div>
+    <ng-template #noFeatured>
+      <p class="empty-state">No featured products available at the moment.</p>
+    </ng-template>
+  </section>
+
+  <!-- Shop by Category -->
+  <section class="categories-section">
+    <div class="section-header">
+      <h2>Shop by Category</h2>
+    </div>
+
+    <div class="category-grid" *ngIf="categories.length > 0; else noCategories">
+      <a 
+        *ngFor="let category of categories" 
+        [routerLink]="['/products']" 
+        [queryParams]="{ categoryId: category.id }"
+        class="category-card"
+      >
+        <div class="category-icon">🏷️</div>
+        <h3>{{ category.name }}</h3>
+      </a>
+    </div>
+    <ng-template #noCategories>
+      <p class="empty-state">No categories available.</p>
+    </ng-template>
+  </section>
+
+</div>

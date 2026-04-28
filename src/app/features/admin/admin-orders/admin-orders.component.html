@@ -1,0 +1,59 @@
+﻿<div class="admin-container">
+  <h1>Manage Orders</h1>
+
+  <div class="filters-bar">
+    <label for="statusFilter">Filter by Status:</label>
+    <select id="statusFilter" [(ngModel)]="statusFilter" (change)="onFilterChange()">
+      <option value="">All Statuses</option>
+      <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+    </select>
+  </div>
+
+  <div class="table-card">
+    <div class="loading-state" *ngIf="isLoading">Loading orders...</div>
+
+    <table class="data-table" *ngIf="!isLoading">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Date</th>
+          <th>User ID</th>
+          <th>Total Amount</th>
+          <th>Payment</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of filteredOrders">
+          <td>#{{ order.id }}</td>
+          <td>{{ order.createdAt | date:'short' }}</td>
+          <td>{{ order.userId }}</td>
+          <td class="amount">&#8377;{{ order.totalAmount | number:'1.2-2' }}</td>
+          <td>{{ order.paymentMode }}</td>
+          <td>
+            <app-status-badge [status]="order.status"></app-status-badge>
+          </td>
+          <td>
+            <ng-container *ngIf="editingOrderId !== order.id">
+              <button class="btn-action btn-edit" (click)="startEdit(order)">Update Status</button>
+            </ng-container>
+
+            <ng-container *ngIf="editingOrderId === order.id">
+              <div class="edit-actions">
+                <select [(ngModel)]="editStatusValue" class="status-select">
+                  <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+                </select>
+                <button class="btn-action btn-save" (click)="updateStatus(order.id)">Save</button>
+                <button class="btn-action btn-cancel" (click)="cancelEdit()">Cancel</button>
+              </div>
+            </ng-container>
+          </td>
+        </tr>
+        <tr *ngIf="filteredOrders.length === 0">
+          <td colspan="7" class="empty-state">No orders found matching the filter.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

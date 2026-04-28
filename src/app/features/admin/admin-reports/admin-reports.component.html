@@ -1,0 +1,54 @@
+﻿<div class="admin-container">
+  <h1>Store Reports</h1>
+
+  <div class="loading-state" *ngIf="isLoading">Generating reports...</div>
+
+  <ng-container *ngIf="!isLoading">
+    
+    <div class="summary-section">
+      <h2>Overall Performance</h2>
+      
+      <div class="kpi-grid">
+        <div class="kpi-card bg-primary">
+          <div class="kpi-icon">📊</div>
+          <div class="kpi-details">
+            <span class="kpi-label">Total Orders</span>
+            <span class="kpi-value">{{ totalOrders }}</span>
+          </div>
+        </div>
+
+        <div class="kpi-card bg-success">
+          <div class="kpi-icon">💰</div>
+          <div class="kpi-details">
+            <span class="kpi-label">Total Revenue (Delivered)</span>
+            <span class="kpi-value">&#8377;{{ totalRevenue | number:'1.2-2' }}</span>
+          </div>
+        </div>
+
+        <div class="kpi-card bg-accent">
+          <div class="kpi-icon">📈</div>
+          <div class="kpi-details">
+            <span class="kpi-label">Average Order Value</span>
+            <span class="kpi-value">&#8377;{{ averageOrderValue | number:'1.2-2' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-section">
+      <h2>Orders by Status</h2>
+      
+      <div class="status-grid">
+        <div class="status-card" *ngFor="let status of statusKeys">
+          <span class="status-name">{{ status }}</span>
+          <span class="status-count">{{ statusCounts[status] }}</span>
+        </div>
+        <div class="empty-state" *ngIf="statusKeys.length === 0">
+          No orders data available.
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+</div>

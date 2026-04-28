@@ -1,0 +1,24 @@
+﻿<div class="product-card" (click)="onCardClick()">
+  <div class="image-container">
+    <img [src]="imageUrl" [alt]="product?.name" class="product-image">
+    <div class="badges">
+      <span class="badge out-of-stock" *ngIf="isOutOfStock">Out of Stock</span>
+      <span class="badge in-stock" *ngIf="!isOutOfStock">In Stock</span>
+    </div>
+  </div>
+  
+  <div class="card-content">
+    <h3 class="product-name">{{ product?.name }}</h3>
+    <p class="product-category" *ngIf="product?.categoryName">{{ product?.categoryName }}</p>
+    <div class="card-footer">
+      <span class="product-price">&#8377;{{ product?.price | number:'1.2-2' }}</span>
+      <button 
+        class="btn-add-cart" 
+        [disabled]="isOutOfStock"
+        (click)="addToCart($event)"
+      >
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>

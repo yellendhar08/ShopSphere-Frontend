@@ -1,0 +1,18 @@
+.badge {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: white;
+  display: inline-block;
+}
+
+.draft { background-color: #9e9e9e; }
+.checkout { background-color: #2196f3; }
+.paid { background-color: #3f51b5; }
+.packed { background-color: #ff9800; }
+.shipped { background-color: #9c27b0; }
+.delivered { background-color: #4caf50; }
+.cancelled { background-color: #f44336; }
+.failed { background-color: #b71c1c; }

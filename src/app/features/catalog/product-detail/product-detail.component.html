@@ -1,0 +1,52 @@
+﻿<div class="product-detail-container" *ngIf="product">
+  
+  <nav class="breadcrumb">
+    <a routerLink="/home">Home</a>
+    <span class="separator">></span>
+    <a routerLink="/products">Products</a>
+    <span class="separator">></span>
+    <span class="current">{{ product.name }}</span>
+  </nav>
+
+  <div class="product-layout">
+    <div class="image-section">
+      <img [src]="imageUrl" [alt]="product.name" class="main-image">
+    </div>
+
+    <div class="info-section">
+      <div class="category-badge" *ngIf="product.categoryName">{{ product.categoryName }}</div>
+      <h1 class="product-name">{{ product.name }}</h1>
+      
+      <div class="price-stock-row">
+        <span class="price">&#8377;{{ product.price | number:'1.2-2' }}</span>
+        
+        <div class="stock-status">
+          <span class="badge in-stock" *ngIf="!isOutOfStock">In Stock ({{ product.stock }} available)</span>
+          <span class="badge out-of-stock" *ngIf="isOutOfStock">Out of Stock</span>
+        </div>
+      </div>
+
+      <div class="description-section">
+        <h3>Description</h3>
+        <p class="description">{{ product.description }}</p>
+      </div>
+
+      <div class="action-section" *ngIf="!isOutOfStock">
+        <div class="quantity-selector">
+          <button class="btn-qty" (click)="decreaseQuantity()" [disabled]="quantity <= 1">-</button>
+          <input type="number" class="qty-input" [(ngModel)]="quantity" readonly>
+          <button class="btn-qty" (click)="increaseQuantity()" [disabled]="quantity >= product.stock">+</button>
+        </div>
+
+        <button class="btn-add-cart" (click)="addToCart()">
+          Add to Cart
+        </button>
+      </div>
+      
+      <div class="action-section out-of-stock-actions" *ngIf="isOutOfStock">
+        <button class="btn-add-cart" disabled>Currently Unavailable</button>
+      </div>
+    </div>
+  </div>
+
+</div>

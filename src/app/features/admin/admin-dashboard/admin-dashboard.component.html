@@ -1,0 +1,45 @@
+﻿<div class="admin-container">
+  <h1>Admin Dashboard</h1>
+
+  <ng-container *ngIf="!isLoading">
+    
+    <div class="metrics-grid" *ngIf="dashboardData">
+      <div class="metric-card blue">
+        <span class="metric-label">Total Orders</span>
+        <span class="metric-value">{{ dashboardData.totalOrders || 0 }}</span>
+      </div>
+      <div class="metric-card green">
+        <span class="metric-label">Total Products</span>
+        <span class="metric-value">{{ dashboardData.totalProducts || 0 }}</span>
+      </div>
+      <div class="metric-card yellow">
+        <span class="metric-label">Total Revenue</span>
+        <span class="metric-value">&#8377;{{ (dashboardData.totalRevenue || 0) | number:'1.2-2' }}</span>
+      </div>
+      <div class="metric-card orange">
+        <span class="metric-label">Pending Orders</span>
+        <span class="metric-value">{{ dashboardData.pendingOrders || 0 }}</span>
+      </div>
+      <div class="metric-card purple">
+        <span class="metric-label">Delivered Orders</span>
+        <span class="metric-value">{{ dashboardData.deliveredOrders || 0 }}</span>
+      </div>
+    </div>
+
+    <div class="welcome-section">
+      <h2>Welcome, Admin</h2>
+      <p>Here are your quick links to manage the store:</p>
+      
+      <div class="quick-links">
+        <a routerLink="/admin/orders" class="btn-link">Manage Orders</a>
+        <a routerLink="/admin/products" class="btn-link">Manage Products</a>
+        <a routerLink="/admin/reports" class="btn-link">View Reports</a>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <div *ngIf="isLoading" class="loading-state">
+    Loading dashboard...
+  </div>
+</div>

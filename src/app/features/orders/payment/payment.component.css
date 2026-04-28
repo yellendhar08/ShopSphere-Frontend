@@ -1,0 +1,166 @@
+.payment-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+h1 {
+  margin: 0 0 32px 0;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 16px;
+}
+
+.payment-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 32px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  margin: 0 0 24px 0;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.method-option {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+
+.method-option.active {
+  border-color: var(--primary);
+  background-color: rgba(26, 35, 126, 0.05);
+}
+
+.method-option.disabled {
+  opacity: 0.6;
+  background-color: var(--bg);
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.method-option.disabled .radio-label {
+  cursor: not-allowed;
+}
+
+.method-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  flex-grow: 1;
+}
+
+.badge-coming-soon {
+  background-color: #e0e0e0;
+  color: #666;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.summary-card {
+  position: sticky;
+  top: 100px;
+}
+
+.order-id {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+.summary-items {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.item-qty {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.item-price {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.summary-divider {
+  height: 1px;
+  background-color: var(--border);
+  margin: 24px 0;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin-bottom: 24px;
+}
+
+.btn-pay {
+  width: 100%;
+  background-color: var(--success);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-pay:hover:not(:disabled) {
+  background-color: #2e7d32;
+}
+
+.btn-pay:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .payment-layout {
+    grid-template-columns: 1fr;
+  }
+  .summary-card {
+    position: static;
+  }
+}

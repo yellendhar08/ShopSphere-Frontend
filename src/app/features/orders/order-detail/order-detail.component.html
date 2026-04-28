@@ -1,0 +1,93 @@
+﻿<div class="order-detail-container">
+  
+  <nav class="breadcrumb">
+    <a routerLink="/my-orders">← Back to My Orders</a>
+  </nav>
+
+  <ng-container *ngIf="!isLoading && order">
+    
+    <div class="order-header-card">
+      <div class="header-main">
+        <h1>Order #{{ order.id }}</h1>
+        <app-status-badge [status]="order.status"></app-status-badge>
+      </div>
+      
+      <div class="order-meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Order Date</span>
+          <span class="meta-value">{{ order.createdAt | date:'medium' }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Payment Mode</span>
+          <span class="meta-value">{{ order.paymentMode }}</span>
+        </div>
+        <div class="meta-item address-item">
+          <span class="meta-label">Shipping Address</span>
+          <span class="meta-value address-value">{{ order.shippingAddress }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline-card" *ngIf="order.status !== 'CANCELLED' && order.status !== 'FAILED'">
+      <h2>Order Status</h2>
+      <div class="timeline">
+        <div 
+          class="timeline-step" 
+          *ngFor="let status of timelineStatuses"
+          [class.reached]="isStatusReached(status)"
+          [class.current]="order.status === status"
+        >
+          <div class="step-circle"></div>
+          <div class="step-label">{{ status }}</div>
+          <div class="step-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="error-card" *ngIf="order.status === 'CANCELLED' || order.status === 'FAILED'">
+      <h2>Order {{ order.status | titlecase }}</h2>
+      <p>This order cannot be tracked because it was cancelled or the payment failed.</p>
+    </div>
+
+    <!-- Order Items -->
+    <div class="items-card">
+      <h2>Order Items</h2>
+      
+      <div class="table-container">
+        <table class="items-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Unit Price</th>
+              <th>Quantity</th>
+              <th class="text-right">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of order.items">
+              <td>
+                <div class="product-cell">
+                  <img [src]="item.imageUrl || 'https://placehold.co/400x300?text=No+Image'" [alt]="item.productName" class="product-img">
+                  <span class="product-name" [routerLink]="['/products', item.productId]">{{ item.productName }}</span>
+                </div>
+              </td>
+              <td>&#8377;{{ item.price | number:'1.2-2' }}</td>
+              <td>{{ item.quantity }}</td>
+              <td class="text-right subtotal-cell">&#8377;{{ item.subtotal | number:'1.2-2' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="order-total-section">
+        <div class="total-row grand-total">
+          <span>Order Total</span>
+          <span>&#8377;{{ order.totalAmount | number:'1.2-2' }}</span>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+</div>

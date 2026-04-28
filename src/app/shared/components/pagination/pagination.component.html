@@ -1,0 +1,23 @@
+<div class="pagination-container" *ngIf="totalPages > 1">
+  <button 
+    class="page-btn nav-btn" 
+    [disabled]="currentPage === 0" 
+    (click)="onPageChange(currentPage - 1)">
+    Previous
+  </button>
+  
+  <button 
+    *ngFor="let page of pages" 
+    class="page-btn" 
+    [class.active]="currentPage === page"
+    (click)="onPageChange(page)">
+    {{ page + 1 }}
+  </button>
+  
+  <button 
+    class="page-btn nav-btn" 
+    [disabled]="currentPage === totalPages - 1" 
+    (click)="onPageChange(currentPage + 1)">
+    Next
+  </button>
+</div>
