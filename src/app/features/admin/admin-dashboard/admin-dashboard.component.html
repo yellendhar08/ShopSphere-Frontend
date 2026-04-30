@@ -1,46 +1,45 @@
-<div class="admin-container">
+<div class="admin-container fade-in">
   <h1>Admin Dashboard</h1>
 
   <ng-container *ngIf="!isLoading">
-    
     <div class="metrics-grid" *ngIf="dashboardData">
-      <div class="metric-card blue">
+      <div class="metric-card">
+        <span class="metric-icon">Box</span>
         <span class="metric-label">Total Orders</span>
         <span class="metric-value">{{ dashboardData.totalOrders || 0 }}</span>
       </div>
-      <div class="metric-card green">
+      <div class="metric-card">
+        <span class="metric-icon">Tag</span>
         <span class="metric-label">Total Products</span>
         <span class="metric-value">{{ dashboardData.totalProducts || 0 }}</span>
       </div>
-      <div class="metric-card yellow">
+      <div class="metric-card">
+        <span class="metric-icon">Rev</span>
         <span class="metric-label">Total Revenue</span>
-        <span class="metric-value">&#8377;{{ (dashboardData.totalRevenue || 0) | number:'1.2-2' }}</span>
+        <span class="metric-value revenue">&#8377;{{ (dashboardData.totalRevenue || 0) | number:'1.2-2' }}</span>
       </div>
-      <div class="metric-card orange">
-        <span class="metric-label">Pending Orders</span>
+      <div class="metric-card">
+        <span class="metric-icon">Wait</span>
+        <span class="metric-label">Pending</span>
         <span class="metric-value">{{ dashboardData.pendingOrders || 0 }}</span>
       </div>
-      <div class="metric-card purple">
-        <span class="metric-label">Delivered Orders</span>
+      <div class="metric-card">
+        <span class="metric-icon">Done</span>
+        <span class="metric-label">Delivered</span>
         <span class="metric-value">{{ dashboardData.deliveredOrders || 0 }}</span>
       </div>
     </div>
 
-    <div class="welcome-section">
-      <h2>Welcome, Admin</h2>
-      <p>Here are your quick links to manage the store:</p>
-      
+    <section class="quick-card">
+      <h2>Quick Links</h2>
       <div class="quick-links">
-        <a routerLink="/admin/orders" class="btn-link">Manage Orders</a>
-        <a routerLink="/admin/products" class="btn-link">Manage Products</a>
-        <a routerLink="/admin/categories" class="btn-link">Manage Categories</a>
-        <a routerLink="/admin/reports" class="btn-link">View Reports</a>
+        <a routerLink="/admin/orders">Manage Orders</a>
+        <a routerLink="/admin/products">Manage Products</a>
+        <a routerLink="/admin/categories">Manage Categories</a>
+        <a routerLink="/admin/reports">View Reports</a>
       </div>
-    </div>
-
+    </section>
   </ng-container>
 
-  <div *ngIf="isLoading" class="loading-state">
-    Loading dashboard...
-  </div>
+  <div *ngIf="isLoading" class="loading-state">Loading dashboard...</div>
 </div>

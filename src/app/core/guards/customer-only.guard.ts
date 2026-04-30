@@ -8,7 +8,7 @@ export const customerOnlyGuard: CanActivateFn = (route, state) => {
 
   // If not logged in, redirect to login
   if (!authService.isLoggedIn()) {
-    router.navigate(['/login']);
+    router.navigate(['/auth/login']);
     return false;
   }
 

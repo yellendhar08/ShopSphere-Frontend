@@ -1,143 +1,18 @@
-.admin-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px 24px;
-}
-
-h1 {
-  margin: 0 0 24px 0;
-  color: var(--text-primary);
-}
-
-.filters-bar {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px 24px;
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.filters-bar label {
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.filters-bar select {
-  padding: 8px 16px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 1rem;
-  outline: none;
-}
-
-.filters-bar select:focus {
-  border-color: var(--primary);
-}
-
-.table-card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow-x: auto;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.data-table th {
-  background-color: var(--bg);
-  padding: 16px;
-  text-align: left;
-  font-weight: 600;
-  color: var(--text-secondary);
-  border-bottom: 2px solid var(--border);
-  white-space: nowrap;
-}
-
-.data-table td {
-  padding: 16px;
-  border-bottom: 1px solid var(--border);
-  color: var(--text-primary);
-  vertical-align: middle;
-}
-
-.data-table tr:hover {
-  background-color: rgba(0,0,0,0.02);
-}
-
-.amount {
-  font-weight: bold;
-  color: var(--primary);
-}
-
-.btn-action {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.85rem;
-  transition: all 0.2s;
-}
-
-.btn-edit {
-  background-color: var(--bg);
-  color: var(--primary);
-  border: 1px solid var(--primary);
-}
-
-.btn-edit:hover {
-  background-color: var(--primary);
-  color: white;
-}
-
-.edit-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.status-select {
-  padding: 6px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  font-size: 0.85rem;
-}
-
-.btn-save {
-  background-color: var(--success);
-  color: white;
-}
-
-.btn-save:hover {
-  background-color: #2e7d32;
-}
-
-.btn-cancel {
-  background-color: #f5f5f5;
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
-}
-
-.btn-cancel:hover {
-  background-color: #e0e0e0;
-}
-
-.loading-state {
-  text-align: center;
-  padding: 40px;
-  color: var(--text-secondary);
-}
-
-.empty-state {
-  text-align: center;
-  padding: 40px;
-  color: var(--text-secondary);
-  font-style: italic;
-}
+.admin-container { width: min(1180px, 100%); margin: 0 auto; }
+.page-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 24px; }
+h1 { color: var(--text-primary); font-size: 32px; font-weight: 800; }
+.filters-bar { display: flex; align-items: center; gap: 10px; }
+label { color: var(--text-muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.table-card { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-card); }
+.data-table { width: 100%; min-width: 900px; border-collapse: collapse; }
+th, td { padding: 16px 18px; border-bottom: 1px solid var(--border); color: var(--text-primary); text-align: left; }
+th { background: var(--bg-secondary); color: var(--text-muted); font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+tbody tr:hover { background: var(--bg-card-hover); }
+.amount { color: var(--orange); font-weight: 800; }
+.btn-action { min-height: 34px; padding: 0 12px; border: 1px solid var(--border-light); border-radius: var(--radius-sm); background: var(--bg-card); color: var(--text-secondary); font-size: 12px; font-weight: 800; }
+.btn-action:hover, .btn-save { border-color: var(--orange); color: var(--orange); }
+.btn-cancel:hover { border-color: var(--error); color: var(--error); }
+.edit-actions { display: flex; gap: 8px; align-items: center; }
+.status-select { max-width: 150px; }
+.empty-state, .loading-state { padding: 32px; text-align: center; }
+@media (max-width: 700px) { .page-header { align-items: flex-start; flex-direction: column; } }

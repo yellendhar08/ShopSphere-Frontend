@@ -1,18 +1,19 @@
-﻿<div class="auth-container">
+<div class="auth-container fade-in">
   <div class="auth-card">
     <div class="auth-header">
-      <h2>Create an Account</h2>
+      <img src="assets/images/logo.png" alt="ShopSphere">
+      <h2>Create Account</h2>
       <p>Join ShopSphere today</p>
     </div>
 
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="auth-form">
       <div class="form-group">
         <label for="name">Full Name</label>
-        <input 
-          id="name" 
-          type="text" 
-          formControlName="name" 
-          placeholder="Enter your full name"
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="Your name"
           [class.is-invalid]="signupForm.get('name')?.invalid && signupForm.get('name')?.touched"
         />
         <div class="error-message" *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched">
@@ -22,12 +23,12 @@
       </div>
 
       <div class="form-group">
-        <label for="email">Email Address</label>
-        <input 
-          id="email" 
-          type="email" 
-          formControlName="email" 
-          placeholder="Enter your email"
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="you@example.com"
           [class.is-invalid]="signupForm.get('email')?.invalid && signupForm.get('email')?.touched"
         />
         <div class="error-message" *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
@@ -38,11 +39,11 @@
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input 
-          id="password" 
-          type="password" 
-          formControlName="password" 
-          placeholder="Create a password (min 6 characters)"
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Minimum 6 characters"
           [class.is-invalid]="signupForm.get('password')?.invalid && signupForm.get('password')?.touched"
         />
         <div class="error-message" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
@@ -53,12 +54,12 @@
 
       <button type="submit" class="btn-submit" [disabled]="signupForm.invalid || isLoading">
         <span *ngIf="!isLoading">Sign Up</span>
-        <span *ngIf="isLoading" class="loading-text">Creating account...</span>
+        <span *ngIf="isLoading">Creating account...</span>
       </button>
     </form>
 
     <div class="auth-footer">
-      <p>Already have an account? <a routerLink="/login">Login here</a></p>
+      <p>Already have an account? <a routerLink="/auth/login">Login here</a></p>
     </div>
   </div>
 </div>

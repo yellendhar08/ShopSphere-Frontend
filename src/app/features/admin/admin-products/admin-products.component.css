@@ -1,151 +1,22 @@
-.admin-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px 24px;
-}
-
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-h1 {
-  margin: 0;
-  color: var(--text-primary);
-}
-
-.btn-primary {
-  background-color: var(--primary);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.2s;
-}
-
-.btn-primary:hover {
-  background-color: #121858;
-}
-
-.table-card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow-x: auto;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.data-table th {
-  background-color: var(--bg);
-  padding: 16px;
-  text-align: left;
-  font-weight: 600;
-  color: var(--text-secondary);
-  border-bottom: 2px solid var(--border);
-  white-space: nowrap;
-}
-
-.data-table td {
-  padding: 16px;
-  border-bottom: 1px solid var(--border);
-  color: var(--text-primary);
-  vertical-align: middle;
-}
-
-.data-table tr:hover {
-  background-color: rgba(0,0,0,0.02);
-}
-
-.product-thumb {
-  width: 48px;
-  height: 48px;
-  object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-}
-
-.product-name {
-  font-weight: 500;
-}
-
-.amount {
-  font-weight: bold;
-  color: var(--primary);
-}
-
-.text-error {
-  color: var(--error);
-  font-weight: bold;
-}
-
-.badge {
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-
-.badge-yes {
-  background-color: #e8f5e9;
-  color: #2e7d32;
-}
-
-.badge-no {
-  background-color: #f5f5f5;
-  color: #757575;
-}
-
-.actions {
-  display: flex;
-  gap: 8px;
-}
-
-.btn-icon {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.btn-icon.edit {
-  background-color: #e3f2fd;
-  color: #1976d2;
-}
-
-.btn-icon.edit:hover {
-  background-color: #bbdefb;
-}
-
-.btn-icon.delete {
-  background-color: #ffebee;
-  color: #d32f2f;
-}
-
-.btn-icon.delete:hover {
-  background-color: #ffcdd2;
-}
-
-.loading-state {
-  text-align: center;
-  padding: 40px;
-  color: var(--text-secondary);
-}
-
-.empty-state {
-  text-align: center;
-  padding: 40px;
-  color: var(--text-secondary);
-  font-style: italic;
-}
+.admin-container { width: min(1180px, 100%); margin: 0 auto; }
+.page-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 24px; }
+h1 { color: var(--text-primary); font-size: 32px; font-weight: 800; }
+.btn-primary { min-height: 42px; display: inline-grid; place-items: center; padding: 0 18px; text-decoration: none; }
+.table-card { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-card); }
+.data-table { width: 100%; min-width: 900px; border-collapse: collapse; }
+th, td { padding: 15px 18px; border-bottom: 1px solid var(--border); color: var(--text-primary); text-align: left; }
+th { background: var(--bg-secondary); color: var(--text-muted); font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+tbody tr:hover { background: var(--bg-card-hover); }
+.product-thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; background: var(--bg-secondary); }
+.product-name { font-weight: 800; }
+.amount { color: var(--orange); font-weight: 800; }
+.badge { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; font-size: 11px; font-weight: 800; }
+.badge-yes { border-color: rgba(255,107,0,0.3); background: var(--orange-glow); color: var(--orange); }
+.badge-no { color: var(--text-muted); }
+.text-error { color: var(--error); font-weight: 800; }
+.actions { display: flex; gap: 8px; }
+.btn-icon { min-height: 34px; padding: 0 12px; border: 1px solid var(--border-light); border-radius: var(--radius-sm); background: var(--bg-card); color: var(--text-secondary); font-size: 12px; font-weight: 800; text-decoration: none; }
+.btn-icon:hover { border-color: var(--orange); color: var(--orange); text-decoration: none; }
+.btn-icon.delete:hover { border-color: var(--error); color: var(--error); }
+.empty-state, .loading-state { padding: 32px; text-align: center; }
+@media (max-width: 700px) { .page-header { align-items: flex-start; flex-direction: column; } }

@@ -1,38 +1,30 @@
 .pagination-container {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  margin: 24px 0;
+  flex-wrap: wrap;
 }
 
 .page-btn {
-  background-color: var(--card-bg);
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
   border: 1px solid var(--border);
-  color: var(--text-primary);
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 14px;
-  transition: all 0.2s ease;
+  border-radius: 8px;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-weight: 800;
 }
 
-.page-btn:hover:not(:disabled) {
-  background-color: #f0f0f0;
-}
-
+.page-btn:hover:not(:disabled),
 .page-btn.active {
-  background-color: var(--primary);
-  color: white;
-  border-color: var(--primary);
+  border-color: var(--orange);
+  background: var(--orange);
+  color: var(--text-primary);
 }
 
 .page-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.nav-btn {
-  font-weight: 600;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
 }

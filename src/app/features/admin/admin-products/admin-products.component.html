@@ -1,7 +1,7 @@
-﻿<div class="admin-container">
+<div class="admin-container fade-in">
   <div class="page-header">
     <h1>Manage Products</h1>
-    <a routerLink="/admin/products/new" class="btn-primary">Add Product</a>
+    <a routerLink="/admin/products/new" class="btn-primary">Add New Product</a>
   </div>
 
   <div class="table-card">
@@ -15,21 +15,17 @@
           <th>Category</th>
           <th>Price</th>
           <th>Stock</th>
-          <th>Is Featured</th>
+          <th>Featured</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let product of products">
-          <td>
-            <img [src]="product.imageUrl || 'https://placehold.co/400x300?text=No+Image'" alt="Product Image" class="product-thumb">
-          </td>
+          <td><img [src]="product.imageUrl || 'https://placehold.co/400x300?text=No+Image'" alt="Product Image" class="product-thumb"></td>
           <td class="product-name">{{ product.name }}</td>
           <td>{{ product.categoryName }}</td>
           <td class="amount">&#8377;{{ product.price | number:'1.2-2' }}</td>
-          <td>
-            <span [class.text-error]="product.stock === 0">{{ product.stock }}</span>
-          </td>
+          <td><span [class.text-error]="product.stock === 0">{{ product.stock }}</span></td>
           <td>
             <span class="badge" [class.badge-yes]="product.isFeatured" [class.badge-no]="!product.isFeatured">
               {{ product.isFeatured ? 'Yes' : 'No' }}
@@ -43,7 +39,7 @@
           </td>
         </tr>
         <tr *ngIf="products.length === 0">
-          <td colspan="7" class="empty-state">No products found. Add some!</td>
+          <td colspan="7" class="empty-state">No products found.</td>
         </tr>
       </tbody>
     </table>

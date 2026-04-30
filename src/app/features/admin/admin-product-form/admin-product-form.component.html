@@ -1,8 +1,5 @@
-﻿<div class="admin-container">
-  
-  <nav class="breadcrumb">
-    <a routerLink="/admin/products">← Back to Products</a>
-  </nav>
+<div class="admin-container fade-in">
+  <a routerLink="/admin/products" class="breadcrumb">← Back to Products</a>
 
   <div class="form-card">
     <h1>{{ isEditMode ? 'Edit Product' : 'Add New Product' }}</h1>
@@ -10,16 +7,15 @@
     <div class="loading-state" *ngIf="isLoading">Loading...</div>
 
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
-      
       <div class="form-row">
         <div class="form-group">
-          <label for="name">Product Name <span class="required">*</span></label>
+          <label for="name">Product Name</label>
           <input type="text" id="name" formControlName="name" placeholder="Enter product name">
           <div class="error-msg" *ngIf="isInvalid('name')">Product name is required.</div>
         </div>
 
         <div class="form-group">
-          <label for="categoryId">Category <span class="required">*</span></label>
+          <label for="categoryId">Category</label>
           <select id="categoryId" formControlName="categoryId">
             <option value="" disabled>Select a category</option>
             <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
@@ -30,43 +26,39 @@
 
       <div class="form-row">
         <div class="form-group">
-          <label for="price">Price (&#8377;) <span class="required">*</span></label>
+          <label for="price">Price (&#8377;)</label>
           <input type="number" id="price" formControlName="price" step="0.01" min="0.01" placeholder="0.00">
           <div class="error-msg" *ngIf="isInvalid('price')">Valid price greater than 0 is required.</div>
         </div>
 
         <div class="form-group">
-          <label for="stock">Stock Quantity <span class="required">*</span></label>
+          <label for="stock">Stock</label>
           <input type="number" id="stock" formControlName="stock" step="1" min="0" placeholder="0">
-          <div class="error-msg" *ngIf="isInvalid('stock')">Valid stock amount is required (min 0).</div>
+          <div class="error-msg" *ngIf="isInvalid('stock')">Valid stock amount is required.</div>
         </div>
       </div>
 
       <div class="form-group">
         <label for="imageUrl">Image URL</label>
-        <input type="text" id="imageUrl" formControlName="imageUrl" placeholder="Paste Cloudinary URL here">
+        <input type="text" id="imageUrl" formControlName="imageUrl" placeholder="Paste image URL">
       </div>
 
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea id="description" formControlName="description" rows="4" placeholder="Enter product description"></textarea>
+        <textarea id="description" formControlName="description" rows="5" placeholder="Enter product description"></textarea>
       </div>
 
-      <div class="form-group checkbox-group">
-        <label class="checkbox-container">
-          <input type="checkbox" formControlName="isFeatured">
-          <span class="checkmark"></span>
-          Is Featured Product
-        </label>
-      </div>
+      <label class="checkbox-container">
+        <input type="checkbox" formControlName="isFeatured">
+        <span>Featured product</span>
+      </label>
 
       <div class="form-actions">
-        <button type="button" class="btn-cancel" routerLink="/admin/products">Cancel</button>
         <button type="submit" class="btn-submit" [disabled]="isSubmitting || productForm.invalid">
           {{ isSubmitting ? 'Saving...' : (isEditMode ? 'Update Product' : 'Create Product') }}
         </button>
+        <a routerLink="/admin/products" class="btn-cancel">Cancel</a>
       </div>
-      
     </form>
   </div>
 </div>

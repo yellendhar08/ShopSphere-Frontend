@@ -1,17 +1,13 @@
-﻿<div class="product-list-container">
-  
+<div class="product-list-container fade-in">
   <aside class="sidebar">
+    <h2>Filters</h2>
+
     <div class="filter-section">
       <h3>Categories</h3>
       <ul class="category-list">
-        <li 
-          [class.active]="categoryId === null" 
-          (click)="onCategorySelect(null)"
-        >
-          All Categories
-        </li>
-        <li 
-          *ngFor="let category of categories" 
+        <li [class.active]="categoryId === null" (click)="onCategorySelect(null)">All Categories</li>
+        <li
+          *ngFor="let category of categories"
           [class.active]="categoryId === category.id"
           (click)="onCategorySelect(category.id!)"
         >
@@ -23,9 +19,7 @@
     <div class="filter-section">
       <h3>Sort By</h3>
       <select [(ngModel)]="sortBy" (change)="onFilterChange()" class="sort-select">
-        <option *ngFor="let option of sortOptions" [value]="option.value">
-          {{ option.label }}
-        </option>
+        <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
       </select>
     </div>
   </aside>
@@ -33,42 +27,36 @@
   <main class="main-content-area">
     <div class="top-bar">
       <div class="search-input-wrapper">
-        <input 
-          type="text" 
-          [(ngModel)]="search" 
+        <span class="search-icon">Search</span>
+        <input
+          type="text"
+          [(ngModel)]="search"
           (keyup.enter)="onFilterChange()"
           placeholder="Search products..."
           class="search-input"
         >
         <button class="btn-search" (click)="onFilterChange()">Search</button>
       </div>
-      
+
       <div class="results-count" *ngIf="products.length > 0">
-        Showing Page {{ page + 1 }} of {{ totalPages }}
+        Showing {{ products.length }} products
       </div>
     </div>
 
     <div class="product-grid" *ngIf="products.length > 0; else noProducts">
-      <app-product-card 
-        *ngFor="let product of products" 
-        [product]="product">
-      </app-product-card>
+      <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
     </div>
-    
+
     <ng-template #noProducts>
       <div class="empty-state">
-        <p>No products found matching your criteria.</p>
+        <h2>No products found</h2>
+        <p>Try a different search or category.</p>
         <button class="btn-reset" (click)="search=''; categoryId=null; onFilterChange()">Reset Filters</button>
       </div>
     </ng-template>
 
     <div class="pagination-wrapper" *ngIf="totalPages > 1">
-      <app-pagination 
-        [currentPage]="page" 
-        [totalPages]="totalPages" 
-        (pageChange)="onPageChange($event)">
-      </app-pagination>
+      <app-pagination [currentPage]="page" [totalPages]="totalPages" (pageChange)="onPageChange($event)"></app-pagination>
     </div>
   </main>
-
 </div>

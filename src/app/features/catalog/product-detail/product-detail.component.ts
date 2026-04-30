@@ -44,12 +44,12 @@ export class ProductDetailComponent implements OnInit {
           this.quantity = 1;
         } else {
           this.toastService.error('Product not found');
-          this.router.navigate(['/products']);
+          this.router.navigate(['/customer/products']);
         }
       },
       error: () => {
         this.toastService.error('Failed to load product details');
-        this.router.navigate(['/products']);
+        this.router.navigate(['/customer/products']);
       }
     });
   }
@@ -79,7 +79,7 @@ export class ProductDetailComponent implements OnInit {
 
     this.authService.currentUser$.pipe(take(1)).subscribe(user => {
       if (!user) {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
       } else {
         this.cartService.addToCart({ productId: this.product!.id, quantity: this.quantity }).subscribe({
           next: (res: any) => {

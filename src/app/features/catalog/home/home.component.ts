@@ -15,7 +15,7 @@ import { Category } from '../../../core/models/category.model';
 })
 export class HomeComponent implements OnInit {
   private catalogService = inject(CatalogService);
-  
+
   featuredProducts: Product[] = [];
   categories: Category[] = [];
 
@@ -39,14 +39,16 @@ export class HomeComponent implements OnInit {
 
   getCategoryIcon(name: string): string {
     const icons: { [key: string]: string } = {
-      'Electronics': '💻',
-      'Mobiles': '📱',
-      'Clothing': '👕',
-      'Furniture': '🛋️',
-      'Groceries': '🛒',
-      'Footwear': '👟',
-      'Sports': '⚽'
+      electronics: '💻',
+      mobiles: '📱',
+      clothing: '👕',
+      furniture: '🛋️',
+      groceries: '🛒',
+      footwear: '👟',
+      sports: '⚽',
+      books: '📚'
     };
-    return icons[name] || '🏷️';
+
+    return icons[name.toLowerCase()] || '🏷️';
   }
 }

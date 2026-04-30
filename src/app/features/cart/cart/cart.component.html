@@ -1,62 +1,50 @@
-﻿<div class="cart-container">
-  
+<div class="cart-container fade-in">
   <div class="cart-header">
     <h1>Shopping Cart</h1>
   </div>
 
   <ng-container *ngIf="!isLoading">
-    
-    <!-- Empty State -->
     <div class="empty-state" *ngIf="!cart || !cart.items || cart.items.length === 0">
-      <div class="empty-icon">🛍️</div>
+      <div class="empty-icon">Cart</div>
       <h2>Your cart is empty</h2>
       <p>Looks like you haven't added anything to your cart yet.</p>
-      <button class="btn-primary mt-20" routerLink="/products">Continue Shopping</button>
+      <button class="btn-primary" routerLink="/customer/products">Continue Shopping</button>
     </div>
 
-    <!-- Filled Cart State -->
     <div class="cart-layout" *ngIf="cart && cart.items && cart.items.length > 0">
-      
       <div class="cart-items-section">
-        <app-cart-item 
-          *ngFor="let item of cart.items" 
+        <div class="cart-table-head">
+          <span>Product</span>
+          <span>Price</span>
+          <span>Quantity</span>
+          <span>Total</span>
+          <span></span>
+        </div>
+        <app-cart-item
+          *ngFor="let item of cart.items"
           [item]="item"
           (cartUpdated)="onCartUpdated()">
         </app-cart-item>
       </div>
 
-      <div class="cart-summary-section">
-        <div class="summary-card">
-          <h3>Order Summary</h3>
-          
-          <div class="summary-row">
-            <span>Items ({{ cart.items.length }})</span>
-            <span>&#8377;{{ cart.totalAmount | number:'1.2-2' }}</span>
-          </div>
-          
-          <div class="summary-row">
-            <span>Shipping</span>
-            <span class="free">Free</span>
-          </div>
-          
-          <div class="summary-divider"></div>
-          
-          <div class="summary-row total">
-            <span>Total</span>
-            <span>&#8377;{{ cart.totalAmount | number:'1.2-2' }}</span>
-          </div>
-          
-          <button class="btn-checkout" (click)="proceedToCheckout()">
-            Proceed to Checkout
-          </button>
-          
-          <button class="btn-continue" routerLink="/products">
-            Continue Shopping
-          </button>
+      <aside class="summary-card">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>&#8377;{{ cart.totalAmount | number:'1.2-2' }}</span>
         </div>
-      </div>
-      
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span class="free">Free</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total">
+          <span>Total</span>
+          <span>&#8377;{{ cart.totalAmount | number:'1.2-2' }}</span>
+        </div>
+        <button class="btn-checkout" (click)="proceedToCheckout()">Proceed to Checkout</button>
+        <button class="btn-continue" routerLink="/customer/products">Continue Shopping</button>
+      </aside>
     </div>
-    
   </ng-container>
 </div>

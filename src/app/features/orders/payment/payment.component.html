@@ -1,68 +1,49 @@
-﻿<div class="payment-container" *ngIf="order">
-  <h1>Complete Your Payment</h1>
+<div class="payment-container fade-in" *ngIf="order">
+  <h1>Payment</h1>
 
   <div class="payment-layout">
-    
-    <div class="payment-methods">
-      <div class="card">
-        <h2>Select Payment Method</h2>
-        
-        <div class="method-option active">
-          <label class="radio-label">
-            <input type="radio" name="paymentMode" value="COD" checked>
-            <span class="method-name">Cash on Delivery (COD)</span>
-          </label>
-        </div>
+    <section class="payment-methods">
+      <h2>Payment Method</h2>
 
-        <div class="method-option disabled">
-          <label class="radio-label">
-            <input type="radio" name="paymentMode" value="CARD" disabled>
-            <span class="method-name">Credit / Debit Card</span>
-            <span class="badge-coming-soon">Coming Soon</span>
-          </label>
-        </div>
+      <label class="method-option">
+        <input type="radio" name="paymentMode" value="COD" [checked]="selectedMode === 'COD'" (change)="selectedMode = 'COD'">
+        <span>
+          <strong>Cash on Delivery</strong>
+          <small>Pay when your order arrives.</small>
+        </span>
+      </label>
 
-        <div class="method-option disabled">
-          <label class="radio-label">
-            <input type="radio" name="paymentMode" value="UPI" disabled>
-            <span class="method-name">UPI / Wallets</span>
-            <span class="badge-coming-soon">Coming Soon</span>
-          </label>
-        </div>
+      <label class="method-option">
+        <input type="radio" name="paymentMode" value="CARD" [checked]="selectedMode === 'CARD'" (change)="selectedMode = 'CARD'">
+        <span>
+          <strong>Card</strong>
+          <small>Use credit or debit card.</small>
+        </span>
+      </label>
 
-      </div>
-    </div>
+      <button class="btn-pay" [disabled]="isProcessing" (click)="onPayNow()">
+        <span *ngIf="!isProcessing">Pay Now</span>
+        <span *ngIf="isProcessing">Processing Payment...</span>
+      </button>
+    </section>
 
-    <div class="payment-summary">
-      <div class="card summary-card">
-        <h2>Order Summary</h2>
-        <div class="order-id">Order ID: #{{ order.id }}</div>
-        
-        <div class="summary-items">
-          <div class="summary-item" *ngFor="let item of order.items">
-            <div class="item-info">
-              <span class="item-name">{{ item.productName }}</span>
-              <span class="item-qty">x{{ item.quantity }}</span>
-            </div>
-            <span class="item-price">&#8377;{{ item.subtotal | number:'1.2-2' }}</span>
+    <aside class="summary-card">
+      <h2>Order Summary</h2>
+      <div class="order-id">Order #{{ order.id }}</div>
+      <div class="summary-items">
+        <div class="summary-item" *ngFor="let item of order.items">
+          <div>
+            <span class="item-name">{{ item.productName }}</span>
+            <span class="item-qty">x{{ item.quantity }}</span>
           </div>
+          <span class="item-price">&#8377;{{ item.subtotal | number:'1.2-2' }}</span>
         </div>
-        
-        <div class="summary-divider"></div>
-        
-        <div class="summary-total">
-          <span>Amount to Pay</span>
-          <span>&#8377;{{ order.totalAmount | number:'1.2-2' }}</span>
-        </div>
-
-        <button 
-          class="btn-pay" 
-          [disabled]="isProcessing"
-          (click)="onPayNow()">
-          <span *ngIf="!isProcessing">Pay Now</span>
-          <span *ngIf="isProcessing">Processing Payment...</span>
-        </button>
       </div>
-    </div>
+      <div class="summary-divider"></div>
+      <div class="summary-total">
+        <span>Total</span>
+        <span>&#8377;{{ order.totalAmount | number:'1.2-2' }}</span>
+      </div>
+    </aside>
   </div>
 </div>

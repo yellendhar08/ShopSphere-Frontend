@@ -19,27 +19,33 @@ import { AdminProductFormComponent } from './features/admin/admin-product-form/a
 import { AdminReportsComponent } from './features/admin/admin-reports/admin-reports.component';
 import { AdminCategoriesComponent } from './features/admin/admin-categories/admin-categories.component';
 
-import { authGuard } from './core/guards/auth.guard';
 import { adminGuard } from './core/guards/admin.guard';
 import { noAuthGuard } from './core/guards/no-auth.guard';
 import { customerOnlyGuard } from './core/guards/customer-only.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'customer/home', pathMatch: 'full' },
+  
+  // Auth Routes (Standalone - No Navbar/Footer)
+  { path: 'auth/login', component: LoginComponent, canActivate: [noAuthGuard] },
+  { path: 'auth/signup', component: SignupComponent, canActivate: [noAuthGuard] },
+
   {
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: 'home', component: HomeComponent, canActivate: [customerOnlyGuard] },
-      { path: 'products', component: ProductListComponent, canActivate: [customerOnlyGuard] },
-      { path: 'products/:id', component: ProductDetailComponent, canActivate: [customerOnlyGuard] },
-      { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
-      { path: 'signup', component: SignupComponent, canActivate: [noAuthGuard] },
-      { path: 'cart', component: CartComponent, canActivate: [customerOnlyGuard] },
-      { path: 'checkout', component: CheckoutComponent, canActivate: [customerOnlyGuard] },
-      { path: 'payment', component: PaymentComponent, canActivate: [customerOnlyGuard] },
-      { path: 'my-orders', component: OrderListComponent, canActivate: [customerOnlyGuard] },
-      { path: 'orders/:id', component: OrderDetailComponent, canActivate: [customerOnlyGuard] },
+      // Public Browse Routes (No Guards)
+      { path: 'customer/home', component: HomeComponent },
+      { path: 'customer/products', component: ProductListComponent },
+      { path: 'customer/product/:id', component: ProductDetailComponent },
+      
+      // Protected Customer Routes
+      { path: 'customer/cart', component: CartComponent, canActivate: [customerOnlyGuard] },
+      { path: 'customer/checkout', component: CheckoutComponent, canActivate: [customerOnlyGuard] },
+      { path: 'customer/payment', component: PaymentComponent, canActivate: [customerOnlyGuard] },
+      { path: 'customer/orders', component: OrderListComponent, canActivate: [customerOnlyGuard] },
+      { path: 'customer/orders/:id', component: OrderDetailComponent, canActivate: [customerOnlyGuard] },
+      
       { path: 'unauthorized', component: UnauthorizedComponent },
     ]
   },
@@ -58,5 +64,5 @@ export const routes: Routes = [
       { path: 'reports', component: AdminReportsComponent },
     ]
   },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'customer/home' }
 ];

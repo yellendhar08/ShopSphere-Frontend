@@ -1,108 +1,125 @@
 .admin-container {
-  max-width: 1200px;
+  width: min(1180px, 100%);
   margin: 0 auto;
-  padding: 32px 24px;
 }
 
 h1 {
-  margin: 0 0 32px 0;
+  margin-bottom: 28px;
   color: var(--text-primary);
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 16px;
+  font-size: 32px;
+  font-weight: 800;
 }
 
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
-  margin-bottom: 48px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.metric-card,
+.quick-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
 }
 
 .metric-card {
-  border-radius: 12px;
+  min-width: 0;
   padding: 24px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-  min-height: 160px; /* Ensures equal height */
-  overflow: hidden; /* Prevents text overflow */
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  background: #1a1a1a;
+  transition: var(--transition);
 }
 
 .metric-card:hover {
-  transform: translateY(-4px);
+  border-color: #FF6B00;
+  background: #1a1a1a;
+  box-shadow: 0 4px 20px rgba(255,107,0,0.15);
+}
+
+.metric-icon {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  height: 32px;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  background: rgba(255,107,0,0.15);
+  color: #FF6B00;
+  font-size: 11px;
+  font-weight: 800;
 }
 
 .metric-label {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-bottom: 12px;
-  opacity: 0.9;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: block;
+  color: #aaaaaa;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .metric-value {
-  font-size: clamp(1.2rem, 3.5vw, 2rem); /* Scalable font size, capped at 2rem to prevent overflow */
-  font-weight: bold;
-  white-space: nowrap; /* Ensures content stays on one line */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.2;
+  display: block;
+  margin-top: 8px;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 800;
 }
 
-.blue { background: linear-gradient(135deg, #1976d2, #42a5f5); }
-.green { background: linear-gradient(135deg, #388e3c, #66bb6a); }
-.yellow { background: linear-gradient(135deg, #f57c00, #ffb74d); }
-.orange { background: linear-gradient(135deg, #e64a19, #ff7043); }
-.purple { background: linear-gradient(135deg, #7b1fa2, #ab47bc); }
+.metric-value.revenue {
+  color: #FF6B00;
+  font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-.welcome-section {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+.quick-card {
+  margin-top: 24px;
   padding: 32px;
 }
 
-.welcome-section h2 {
-  margin: 0 0 16px 0;
+.quick-card h2 {
+  margin-bottom: 18px;
   color: var(--text-primary);
-}
-
-.welcome-section p {
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-  margin-bottom: 24px;
+  font-size: 22px;
+  font-weight: 800;
 }
 
 .quick-links {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
 
-.btn-link {
-  background-color: var(--bg);
-  color: var(--primary);
-  border: 1px solid var(--primary);
-  padding: 12px 24px;
-  border-radius: 8px;
+.quick-links a {
+  min-height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-weight: 800;
+  text-align: center;
   text-decoration: none;
-  font-weight: bold;
-  transition: all 0.2s;
 }
 
-.btn-link:hover {
-  background-color: var(--primary);
-  color: white;
+.quick-links a:hover {
+  border-color: var(--orange);
+  color: var(--orange);
 }
 
 .loading-state {
-  text-align: center;
   padding: 40px;
-  color: var(--text-secondary);
-  font-size: 1.2rem;
+  text-align: center;
+}
+
+@media (max-width: 1100px) {
+  .metrics-grid,
+  .quick-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .metrics-grid,
+  .quick-links { grid-template-columns: 1fr; }
 }

@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
 
   onSearch() {
     if (this.searchQuery.trim()) {
-      this.router.navigate(['/products'], { queryParams: { search: this.searchQuery.trim() } });
+      this.router.navigate(['/customer/products'], { queryParams: { search: this.searchQuery.trim() } });
       this.searchQuery = '';
     }
   }

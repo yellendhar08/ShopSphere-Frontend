@@ -30,7 +30,7 @@ export class CheckoutComponent implements OnInit {
         if (res.success && res.data) {
           this.cart = res.data;
           if (!this.cart?.items || this.cart?.items.length === 0) {
-            this.router.navigate(['/cart']);
+            this.router.navigate(['/customer/cart']);
           }
         }
       }
@@ -48,7 +48,7 @@ export class CheckoutComponent implements OnInit {
       next: (res: any) => {
         if (res.success && res.data) {
           localStorage.setItem('shopsphere_pending_order', JSON.stringify(res.data));
-          this.router.navigate(['/payment']);
+          this.router.navigate(['/customer/payment']);
         } else {
           this.toastService.error(res.message || 'Checkout failed');
         }

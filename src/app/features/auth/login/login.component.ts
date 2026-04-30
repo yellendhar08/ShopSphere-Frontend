@@ -48,7 +48,7 @@ export class LoginComponent {
           if (user?.role === 'ADMIN') {
             this.router.navigate(['/admin/dashboard']);
           } else {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/customer/home']);
           }
         } else {
           this.serverError = res.message || 'Login failed.';

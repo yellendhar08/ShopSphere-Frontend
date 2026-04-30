@@ -42,7 +42,7 @@ export class SignupComponent {
         next: (res: any) => {
           if (res.success) {
             this.toastService.success('Account created successfully!');
-            this.router.navigate(['/home']);
+            this.router.navigate(['/customer/home']);
           } else {
             this.toastService.error(res.message || 'Signup failed.');
           }

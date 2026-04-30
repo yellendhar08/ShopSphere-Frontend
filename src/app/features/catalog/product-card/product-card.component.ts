@@ -32,7 +32,7 @@ export class ProductCardComponent {
 
   onCardClick() {
     if (this.product && this.product.id) {
-      this.router.navigate(['/products', this.product.id]);
+      this.router.navigate(['/customer/product', this.product.id]);
     }
   }
 
@@ -43,7 +43,7 @@ export class ProductCardComponent {
 
     this.authService.currentUser$.pipe(take(1)).subscribe(user => {
       if (!user) {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
       } else {
         this.cartService.addToCart({ productId: this.product.id, quantity: 1 }).subscribe({
           next: (res: any) => {

@@ -1,23 +1,18 @@
-<div class="admin-container">
+<div class="admin-container fade-in">
   <h1>Manage Categories</h1>
 
-  <div class="card create-card">
-    <h3>Create New Category</h3>
+  <section class="card create-card">
+    <h2>Create New Category</h2>
     <div class="form-group">
-      <input 
-        type="text" 
-        [(ngModel)]="newCategoryName" 
-        placeholder="Enter category name"
-        (keyup.enter)="onCreate()"
-      />
-      <button class="btn btn-primary" (click)="onCreate()" [disabled]="isLoading || !newCategoryName.trim()">
+      <input type="text" [(ngModel)]="newCategoryName" placeholder="Enter category name" (keyup.enter)="onCreate()" />
+      <button class="btn-primary" (click)="onCreate()" [disabled]="isLoading || !newCategoryName.trim()">
         {{ isLoading ? 'Creating...' : 'Create' }}
       </button>
     </div>
-  </div>
+  </section>
 
-  <div class="card table-card">
-    <h3>Existing Categories</h3>
+  <section class="card table-card">
+    <h2>Categories</h2>
     <table class="data-table">
       <thead>
         <tr>
@@ -35,5 +30,5 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </section>
 </div>

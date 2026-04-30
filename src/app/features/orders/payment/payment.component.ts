@@ -32,7 +32,7 @@ export class PaymentComponent implements OnInit {
       this.order = JSON.parse(pendingOrderRaw);
     } else {
       this.toastService.error('No pending order found.');
-      this.router.navigate(['/cart']);
+      this.router.navigate(['/customer/cart']);
     }
   }
 
@@ -56,7 +56,7 @@ export class PaymentComponent implements OnInit {
           localStorage.removeItem('shopsphere_pending_order');
           this.cartService.clearCartCount();
           this.toastService.success('Order placed successfully');
-          this.router.navigate(['/my-orders']);
+          this.router.navigate(['/customer/orders']);
         } else {
           this.toastService.error(res.message || 'Payment processing failed');
           this.isProcessing = false;
