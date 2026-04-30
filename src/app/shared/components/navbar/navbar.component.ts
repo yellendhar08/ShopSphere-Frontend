@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -16,14 +16,27 @@ export class NavbarComponent implements OnInit {
   authService = inject(AuthService);
   cartService = inject(CartService);
   router = inject(Router);
+  private eRef = inject(ElementRef);
 
   searchQuery = '';
   cartCount = 0;
+  isDropdownOpen = false;
 
   ngOnInit() {
     this.cartService.cartCount$.subscribe(count => {
       this.cartCount = count;
     });
+  }
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickout(event: any) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.isDropdownOpen = false;
+    }
   }
 
   onSearch() {

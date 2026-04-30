@@ -17,10 +17,12 @@ import { AdminOrdersComponent } from './features/admin/admin-orders/admin-orders
 import { AdminProductsComponent } from './features/admin/admin-products/admin-products.component';
 import { AdminProductFormComponent } from './features/admin/admin-product-form/admin-product-form.component';
 import { AdminReportsComponent } from './features/admin/admin-reports/admin-reports.component';
+import { AdminCategoriesComponent } from './features/admin/admin-categories/admin-categories.component';
 
 import { authGuard } from './core/guards/auth.guard';
 import { adminGuard } from './core/guards/admin.guard';
 import { noAuthGuard } from './core/guards/no-auth.guard';
+import { customerOnlyGuard } from './core/guards/customer-only.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,16 +30,16 @@ export const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: 'home', component: HomeComponent },
-      { path: 'products', component: ProductListComponent },
-      { path: 'products/:id', component: ProductDetailComponent },
+      { path: 'home', component: HomeComponent, canActivate: [customerOnlyGuard] },
+      { path: 'products', component: ProductListComponent, canActivate: [customerOnlyGuard] },
+      { path: 'products/:id', component: ProductDetailComponent, canActivate: [customerOnlyGuard] },
       { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
       { path: 'signup', component: SignupComponent, canActivate: [noAuthGuard] },
-      { path: 'cart', component: CartComponent, canActivate: [authGuard] },
-      { path: 'checkout', component: CheckoutComponent, canActivate: [authGuard] },
-      { path: 'payment', component: PaymentComponent, canActivate: [authGuard] },
-      { path: 'my-orders', component: OrderListComponent, canActivate: [authGuard] },
-      { path: 'orders/:id', component: OrderDetailComponent, canActivate: [authGuard] },
+      { path: 'cart', component: CartComponent, canActivate: [customerOnlyGuard] },
+      { path: 'checkout', component: CheckoutComponent, canActivate: [customerOnlyGuard] },
+      { path: 'payment', component: PaymentComponent, canActivate: [customerOnlyGuard] },
+      { path: 'my-orders', component: OrderListComponent, canActivate: [customerOnlyGuard] },
+      { path: 'orders/:id', component: OrderDetailComponent, canActivate: [customerOnlyGuard] },
       { path: 'unauthorized', component: UnauthorizedComponent },
     ]
   },
@@ -52,6 +54,7 @@ export const routes: Routes = [
       { path: 'products', component: AdminProductsComponent },
       { path: 'products/new', component: AdminProductFormComponent },
       { path: 'products/:id/edit', component: AdminProductFormComponent },
+      { path: 'categories', component: AdminCategoriesComponent },
       { path: 'reports', component: AdminReportsComponent },
     ]
   },

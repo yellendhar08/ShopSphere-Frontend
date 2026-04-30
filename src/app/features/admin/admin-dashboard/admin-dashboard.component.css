@@ -24,8 +24,11 @@ h1 {
   color: white;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   transition: transform 0.2s;
+  min-height: 160px; /* Ensures equal height */
+  overflow: hidden; /* Prevents text overflow */
 }
 
 .metric-card:hover {
@@ -37,11 +40,18 @@ h1 {
   font-weight: 500;
   margin-bottom: 12px;
   opacity: 0.9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .metric-value {
-  font-size: 2.5rem;
+  font-size: clamp(1.2rem, 3.5vw, 2rem); /* Scalable font size, capped at 2rem to prevent overflow */
   font-weight: bold;
+  white-space: nowrap; /* Ensures content stays on one line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
 }
 
 .blue { background: linear-gradient(135deg, #1976d2, #42a5f5); }

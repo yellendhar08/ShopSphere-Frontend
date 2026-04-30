@@ -1,0 +1,39 @@
+<div class="admin-container">
+  <h1>Manage Categories</h1>
+
+  <div class="card create-card">
+    <h3>Create New Category</h3>
+    <div class="form-group">
+      <input 
+        type="text" 
+        [(ngModel)]="newCategoryName" 
+        placeholder="Enter category name"
+        (keyup.enter)="onCreate()"
+      />
+      <button class="btn btn-primary" (click)="onCreate()" [disabled]="isLoading || !newCategoryName.trim()">
+        {{ isLoading ? 'Creating...' : 'Create' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="card table-card">
+    <h3>Existing Categories</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cat of categories">
+          <td>{{ cat.id }}</td>
+          <td>{{ cat.name }}</td>
+        </tr>
+        <tr *ngIf="categories.length === 0">
+          <td colspan="2" class="empty-state">No categories found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

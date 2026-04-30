@@ -29,30 +29,34 @@
   object-fit: cover;
 }
 
-.badges {
-  position: absolute;
-  top: 12px;
-  right: 12px;
+.stock-status {
+  margin-bottom: 12px;
 }
 
-.badge {
+.status-badge {
+  display: inline-block;
   padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: white;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .in-stock {
-  background-color: var(--success);
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
 }
 
 .out-of-stock {
-  background-color: var(--error);
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
 }
 
 .card-content {
-  padding: 16px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -60,7 +64,7 @@
 
 .product-name {
   margin: 0 0 4px 0;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: var(--text-primary);
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -69,8 +73,8 @@
 }
 
 .product-category {
-  margin: 0 0 16px 0;
-  font-size: 0.85rem;
+  margin: 0 0 12px 0;
+  font-size: 0.75rem;
   color: var(--text-secondary);
 }
 
@@ -82,7 +86,7 @@
 }
 
 .product-price {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: bold;
   color: var(--primary);
 }

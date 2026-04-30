@@ -1,8 +1,9 @@
 .footer {
-  background-color: var(--card-bg);
-  border-top: 1px solid var(--border);
+  background-color: #1a237e;
+  border-top: 1px solid rgba(255,255,255,0.1);
   padding: 24px 0;
   margin-top: 48px;
+  color: white;
 }
 
 .footer-content {
@@ -15,7 +16,7 @@
 }
 
 .copyright {
-  color: var(--text-secondary);
+  color: rgba(255,255,255,0.8);
   margin: 0;
 }
 
@@ -25,14 +26,15 @@
 }
 
 .footer-links a {
-  color: var(--text-secondary);
+  color: rgba(255,255,255,0.8);
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s;
+  transition: all 0.2s;
 }
 
 .footer-links a:hover {
-  color: var(--primary);
+  color: white;
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {

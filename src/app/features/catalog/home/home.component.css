@@ -61,39 +61,70 @@
 }
 
 .category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 16px 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.category-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.category-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.category-grid::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+.category-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
 }
 
 .category-card {
+  flex: 0 0 120px;
+  height: 120px;
   background-color: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 32px 20px;
+  border-radius: 16px;
+  padding: 12px;
   text-align: center;
   text-decoration: none;
   color: var(--text-primary);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.2s;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .category-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
   border-color: var(--primary);
+  background-color: #f8f9ff;
 }
 
 .category-card h3 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 .category-icon {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
 }
 
 .empty-state {

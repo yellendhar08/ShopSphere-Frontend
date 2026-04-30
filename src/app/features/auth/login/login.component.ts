@@ -43,7 +43,13 @@ export class LoginComponent {
       next: (res: any) => {
         if (res.success) {
           this.toastService.success('Logged in successfully!');
-          this.router.navigate(['/home']);
+          const user = this.authService.getCurrentUser();
+          
+          if (user?.role === 'ADMIN') {
+            this.router.navigate(['/admin/dashboard']);
+          } else {
+            this.router.navigate(['/home']);
+          }
         } else {
           this.serverError = res.message || 'Login failed.';
         }

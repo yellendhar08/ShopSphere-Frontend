@@ -1,6 +1,13 @@
 <div class="admin-topbar">
-  <div class="logo">ShopSphere Admin</div>
-  <a routerLink="/home" class="back-link">Back to Store</a>
+  <div class="logo">
+    <a routerLink="/admin/dashboard" class="brand-link">
+      <img src="assets/images/logo.png" alt="ShopSphere" height="60">
+    </a>
+  </div>
+  <div class="admin-actions">
+    <span class="admin-label">Admin</span>
+    <button (click)="logout()" class="logout-btn">Logout</button>
+  </div>
 </div>
 <main class="admin-content">
   <router-outlet></router-outlet>

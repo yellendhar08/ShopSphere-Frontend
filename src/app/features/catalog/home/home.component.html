@@ -1,4 +1,4 @@
-﻿<div class="home-container">
+<div class="home-container">
   
   <!-- Hero Banner -->
   <section class="hero">
@@ -39,7 +39,7 @@
         [queryParams]="{ categoryId: category.id }"
         class="category-card"
       >
-        <div class="category-icon">🏷️</div>
+        <div class="category-icon">{{ getCategoryIcon(category.name) }}</div>
         <h3>{{ category.name }}</h3>
       </a>
     </div>

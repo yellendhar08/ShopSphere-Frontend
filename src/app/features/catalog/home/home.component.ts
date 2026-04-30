@@ -36,4 +36,17 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  getCategoryIcon(name: string): string {
+    const icons: { [key: string]: string } = {
+      'Electronics': '💻',
+      'Mobiles': '📱',
+      'Clothing': '👕',
+      'Furniture': '🛋️',
+      'Groceries': '🛒',
+      'Footwear': '👟',
+      'Sports': '⚽'
+    };
+    return icons[name] || '🏷️';
+  }
 }
