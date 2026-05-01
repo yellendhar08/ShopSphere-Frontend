@@ -13,10 +13,18 @@
         </span>
       </label>
 
-      <label class="method-option">
-        <input type="radio" name="paymentMode" value="CARD" [checked]="selectedMode === 'CARD'" (change)="selectedMode = 'CARD'">
+      <label class="method-option disabled">
+        <input type="radio" name="paymentMode" value="UPI" disabled>
         <span>
-          <strong>Card</strong>
+          <strong>UPI <span class="coming-soon">Coming Soon</span></strong>
+          <small>Pay using Google Pay, PhonePe, Paytm</small>
+        </span>
+      </label>
+
+      <label class="method-option disabled">
+        <input type="radio" name="paymentMode" value="CARD" disabled>
+        <span>
+          <strong>Card <span class="coming-soon">Coming Soon</span></strong>
           <small>Use credit or debit card.</small>
         </span>
       </label>
