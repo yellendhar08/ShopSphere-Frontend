@@ -7,6 +7,17 @@
     <button (click)="logout()" class="logout-btn">Logout</button>
   </div>
 </div>
-<main class="admin-content">
-  <router-outlet></router-outlet>
-</main>
+<div class="admin-body">
+  <aside class="admin-sidebar">
+    <nav class="sidebar-nav">
+      <a routerLink="/admin/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">Dashboard</a>
+      <a routerLink="/admin/orders" routerLinkActive="active" class="nav-item">Orders</a>
+      <a routerLink="/admin/products" routerLinkActive="active" class="nav-item">Products</a>
+      <a routerLink="/admin/categories" routerLinkActive="active" class="nav-item">Categories</a>
+      <a routerLink="/admin/reports" routerLinkActive="active" class="nav-item">Reports</a>
+    </nav>
+  </aside>
+  <main class="admin-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

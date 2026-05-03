@@ -5,19 +5,14 @@
         <img src="assets/images/logo.png" alt="ShopSphere" height="48">
       </a>
       <h2>Welcome Back</h2>
-      <p>Sign in to your account</p>
+      <p>Sign in to your <span style="color: #FF6B00; font-weight: 600;">ShopSphere</span> account</p>
     </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
       <div class="form-group">
         <label for="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          formControlName="email"
-          placeholder="you@example.com"
-          [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
-        />
+        <input id="email" type="email" formControlName="email" placeholder="you@example.com"
+          [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" />
         <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
           <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</span>
           <span *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address.</span>
@@ -26,13 +21,8 @@
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          formControlName="password"
-          placeholder="Enter your password"
-          [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
-        />
+        <input id="password" type="password" formControlName="password" placeholder="Enter your password"
+          [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" />
         <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
           <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</span>
         </div>

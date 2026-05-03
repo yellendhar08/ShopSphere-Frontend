@@ -19,7 +19,7 @@ export class CartService {
     return this.http.get<ApiResponse<Cart>>(this.baseUrl).pipe(
       tap(res => {
         if (res?.data) {
-          const count = res.data.items?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+          const count = res.data.items?.length || 0;
           this.cartCount$.next(count);
         }
       })

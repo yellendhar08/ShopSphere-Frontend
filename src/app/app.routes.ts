@@ -22,6 +22,7 @@ import { AdminCategoriesComponent } from './features/admin/admin-categories/admi
 import { adminGuard } from './core/guards/admin.guard';
 import { noAuthGuard } from './core/guards/no-auth.guard';
 import { customerOnlyGuard } from './core/guards/customer-only.guard';
+import { noAdminGuard } from './core/guards/no-admin.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'customer/home', pathMatch: 'full' },
@@ -34,10 +35,10 @@ export const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      // Public Browse Routes (No Guards)
-      { path: 'customer/home', component: HomeComponent },
-      { path: 'customer/products', component: ProductListComponent },
-      { path: 'customer/product/:id', component: ProductDetailComponent },
+      // Public Browse Routes (No Guards for guests/customers, but restrict Admins)
+      { path: 'customer/home', component: HomeComponent, canActivate: [noAdminGuard] },
+      { path: 'customer/products', component: ProductListComponent, canActivate: [noAdminGuard] },
+      { path: 'customer/product/:id', component: ProductDetailComponent, canActivate: [noAdminGuard] },
       
       // Protected Customer Routes
       { path: 'customer/cart', component: CartComponent, canActivate: [customerOnlyGuard] },

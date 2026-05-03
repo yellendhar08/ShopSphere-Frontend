@@ -13,10 +13,10 @@
         </span>
       </label>
 
-      <label class="method-option disabled">
-        <input type="radio" name="paymentMode" value="UPI" disabled>
+      <label class="method-option">
+        <input type="radio" name="paymentMode" value="UPI" [checked]="selectedMode === 'UPI'" (change)="selectedMode = 'UPI'">
         <span>
-          <strong>UPI <span class="coming-soon">Coming Soon</span></strong>
+          <strong>UPI</strong>
           <small>Pay using Google Pay, PhonePe, Paytm</small>
         </span>
       </label>

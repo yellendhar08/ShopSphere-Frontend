@@ -38,6 +38,12 @@ export class PaymentComponent implements OnInit {
 
   onPayNow() {
     if (!this.order) return;
+
+    if (this.selectedMode === 'UPI') {
+      this.toastService.error('UPI payment coming soon! Please select Cash on Delivery.');
+      return;
+    }
+
     this.isProcessing = true;
 
     // Step 1: processPayment

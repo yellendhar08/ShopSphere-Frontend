@@ -90,8 +90,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onSlideClick(categoryId: number) {
-    this.router.navigate(['/customer/products'], { 
-      queryParams: { categoryId, sortBy: 'newest' } 
+    this.router.navigate(['/customer/products'], {
+      queryParams: { categoryId, sortBy: 'newest' }
     });
   }
 
@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       footwear: '👟',
       sports: '⚽',
       books: '📚',
-      'skin care': '🧴'
+      skincare: '🧴'
     };
 
     return icons[name.toLowerCase()] || '🏷️';

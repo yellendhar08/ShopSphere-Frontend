@@ -21,7 +21,9 @@ export class CheckoutComponent implements OnInit {
   private router = inject(Router);
 
   cart: Cart | null = null;
-  shippingAddress = '';
+  area = '';
+  city = '';
+  pincode = '';
   isProcessing = false;
 
   ngOnInit() {
@@ -38,13 +40,14 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.shippingAddress.trim()) {
-      this.toastService.error('Shipping address is required');
+    if (!this.area.trim() || !this.city.trim() || !this.pincode.trim()) {
+      this.toastService.error('Please fill all address fields');
       return;
     }
 
+    const fullAddress = `${this.area.trim()}, ${this.city.trim()} - ${this.pincode.trim()}`;
     this.isProcessing = true;
-    this.orderService.startCheckout({ shippingAddress: this.shippingAddress }).subscribe({
+    this.orderService.startCheckout({ shippingAddress: fullAddress }).subscribe({
       next: (res: any) => {
         if (res.success && res.data) {
           localStorage.setItem('shopsphere_pending_order', JSON.stringify(res.data));
