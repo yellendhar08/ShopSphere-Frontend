@@ -25,7 +25,11 @@ export class AdminOrdersComponent implements OnInit {
   statusFilter = '';
   
   statusOptions: OrderStatus[] = [
-    'DRAFT', 'CHECKOUT', 'PAID', 'PACKED', 'SHIPPED', 'DELIVERED', 'CANCELLED', 'FAILED'
+    'CHECKOUT', 'PLACED', 'PAID', 'PACKED', 'SHIPPED', 'DELIVERED', 'CANCELLED', 'FAILED'
+  ];
+
+  statusSequence: OrderStatus[] = [
+    'CHECKOUT', 'PLACED', 'PAID', 'PACKED', 'SHIPPED', 'DELIVERED'
   ];
 
   editingOrderId: number | null = null;
@@ -74,6 +78,30 @@ export class AdminOrdersComponent implements OnInit {
   cancelEdit() {
     this.editingOrderId = null;
     this.editStatusValue = '';
+  }
+
+  isStatusDisabled(currentStatus: string, targetStatus: string): boolean {
+    if (currentStatus === targetStatus) return false;
+    
+    // Terminal states cannot be changed
+    if (['DELIVERED', 'CANCELLED', 'FAILED'].includes(currentStatus)) {
+      return true;
+    }
+
+    // You can always move to cancelled or failed if not in terminal state
+    if (['CANCELLED', 'FAILED'].includes(targetStatus)) {
+      return false;
+    }
+
+    const currentIndex = this.statusSequence.indexOf(currentStatus as OrderStatus);
+    const targetIndex = this.statusSequence.indexOf(targetStatus as OrderStatus);
+
+    // Disable backward steps in the main sequence
+    if (currentIndex !== -1 && targetIndex !== -1) {
+      return targetIndex < currentIndex;
+    }
+
+    return false;
   }
 
   updateStatus(orderId: number) {

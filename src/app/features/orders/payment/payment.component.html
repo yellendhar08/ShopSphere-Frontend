@@ -1,49 +1,39 @@
-<div class="payment-container fade-in" *ngIf="order">
+<div class="payment-container fade-in">
   <h1>Payment</h1>
 
-  <div class="payment-layout">
+  <div class="payment-layout" *ngIf="order">
     <section class="payment-methods">
       <h2>Payment Method</h2>
 
-      <label class="method-option">
-        <input type="radio" name="paymentMode" value="COD" [checked]="selectedMode === 'COD'" (change)="selectedMode = 'COD'">
-        <span>
-          <strong>Cash on Delivery</strong>
-          <small>Pay when your order arrives.</small>
-        </span>
-      </label>
+      <div class="payment-option" [class.selected]="selectedMode === 'COD'" (click)="selectedMode = 'COD'">
+        <div class="radio-circle" [class.active]="selectedMode === 'COD'"></div>
+        <div class="option-info">
+          <span class="option-title">Cash on Delivery</span>
+          <span class="option-desc">Pay when your order arrives.</span>
+        </div>
+      </div>
 
-      <label class="method-option">
-        <input type="radio" name="paymentMode" value="UPI" [checked]="selectedMode === 'UPI'" (change)="selectedMode = 'UPI'">
-        <span>
-          <strong>UPI</strong>
-          <small>Pay using Google Pay, PhonePe, Paytm</small>
-        </span>
-      </label>
+      <div class="payment-option" [class.selected]="selectedMode === 'PREPAID'" (click)="selectedMode = 'PREPAID'">
+        <div class="radio-circle" [class.active]="selectedMode === 'PREPAID'"></div>
+        <div class="option-info">
+          <span class="option-title">Pay Online</span>
+          <span class="option-desc">UPI, Credit/Debit Card, Netbanking via Razorpay</span>
+        </div>
+      </div>
 
-      <label class="method-option disabled">
-        <input type="radio" name="paymentMode" value="CARD" disabled>
-        <span>
-          <strong>Card <span class="coming-soon">Coming Soon</span></strong>
-          <small>Use credit or debit card.</small>
-        </span>
-      </label>
-
-      <button class="btn-pay" [disabled]="isProcessing" (click)="onPayNow()">
-        <span *ngIf="!isProcessing">Pay Now</span>
-        <span *ngIf="isProcessing">Processing Payment...</span>
+      <button class="btn-pay" (click)="onPayNow()" [disabled]="isProcessing">
+        <span *ngIf="!isProcessing">{{ selectedMode === 'COD' ? 'Place Order' : 'Pay Now' }}</span>
+        <span *ngIf="isProcessing">Processing...</span>
       </button>
     </section>
 
     <aside class="summary-card">
       <h2>Order Summary</h2>
-      <div class="order-id">Order #{{ order.id }}</div>
+      <p class="order-id">Order #{{ order.id }}</p>
       <div class="summary-items">
         <div class="summary-item" *ngFor="let item of order.items">
-          <div>
-            <span class="item-name">{{ item.productName }}</span>
-            <span class="item-qty">x{{ item.quantity }}</span>
-          </div>
+          <span class="item-name">{{ item.productName }}</span>
+          <span class="item-qty">x{{ item.quantity }}</span>
           <span class="item-price">&#8377;{{ item.subtotal | number:'1.2-2' }}</span>
         </div>
       </div>

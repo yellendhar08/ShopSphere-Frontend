@@ -24,7 +24,7 @@ export class OrderDetailComponent implements OnInit {
   isLoading = true;
 
   timelineStatuses: OrderStatus[] = [
-    'DRAFT', 'CHECKOUT', 'PAID', 'PACKED', 'SHIPPED', 'DELIVERED'
+    'CHECKOUT', 'PLACED', 'PAID', 'PACKED', 'SHIPPED', 'DELIVERED'
   ];
 
   ngOnInit() {

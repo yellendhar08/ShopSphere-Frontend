@@ -37,7 +37,7 @@
             <button *ngIf="editingOrderId !== order.id" class="btn-action btn-edit" (click)="startEdit(order)">Update</button>
             <div class="edit-actions" *ngIf="editingOrderId === order.id">
               <select [(ngModel)]="editStatusValue" class="status-select">
-                <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+                <option *ngFor="let status of statusOptions" [value]="status" [disabled]="isStatusDisabled(order.status, status)">{{ status }}</option>
               </select>
               <button class="btn-action btn-save" (click)="updateStatus(order.id)">Save</button>
               <button class="btn-action btn-cancel" (click)="cancelEdit()">Cancel</button>
